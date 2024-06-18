@@ -24,9 +24,10 @@ public class WinLoseManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "DoNotTouch")
+        if (collision.tag == "Win")
         {
-            LoseScreen();
+            Debug.Log("win detected");
+            WinScreen();
         }
     }
 
@@ -44,7 +45,7 @@ public class WinLoseManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    // Method to handle the player winning (optional)
+    // Method to handle the player winning
     public void WinScreen()
     {
         Debug.Log("Player has won!");
