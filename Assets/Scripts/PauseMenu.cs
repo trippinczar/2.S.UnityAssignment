@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -70,6 +71,12 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false); // Deactivates pause menu when resuming game
         Time.timeScale = 1f; // Resumes animation and time
         isPaused = false; // sets the game to unpause
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
     
     public void QuitGame()
