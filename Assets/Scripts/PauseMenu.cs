@@ -71,4 +71,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f; // Resumes animation and time
         isPaused = false; // sets the game to unpause
     }
+    
+    public void QuitGame()
+    {
+        Application.Quit(); // Quits the game
+        Debug.Log("Quited Game");
+    }
 }
