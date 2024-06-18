@@ -2567,6 +2567,7 @@ GameObject:
   - component: {fileID: 1439680036}
   - component: {fileID: 1439680031}
   - component: {fileID: 1439680030}
+  - component: {fileID: 1439680037}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2587,6 +2588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1439680033}
+  animator: {fileID: 1439680037}
   moveSpeed: 5
   jumpPower: 10
   maxJumps: 2
@@ -2802,6 +2804,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0.028893292, y: 0.009631038}
   m_Size: {x: 0.6734351, y: 1.5321035}
   m_Direction: 0
+--- !u!95 &1439680037
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439680029}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: efdfc32f460f80f44a8b2b79e40b1b71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1512676039 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1422785743070562728, guid: 45f601271db5afc4380c2e7c2d74d452, type: 3}

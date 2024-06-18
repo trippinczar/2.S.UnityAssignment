@@ -5,37 +5,39 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Animator animator; // For animations
     private bool isFacingRight = true;
     
+    // Movement
     [Header("Movement")]
     public float moveSpeed = 5f;
     float horizontalMovement;
-
+    // Jumping
     [Header("Jumping")]
     public float jumpPower = 10f;
     public int maxJumps = 2;
     private int jumpsRemaining;
-
+    // GroundCheck
     [Header("GroundCheck")]
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5F, 0.05f);
     public LayerMask groundLayer;
     private bool isGrounded;
-    
+    // Gravity
     [Header("Gravity")]
     public float baseGravity = 2;
     public float maxFallSpeed = 18f;
     public float fallSpeedMultiplier = 2f;
-    
+    // WallCheck
     [Header("WallCheck")]
     public Transform wallCheckPos;
     public Vector2 wallCheckSize = new Vector2(0.5F, 0.05f);
     public LayerMask wallLayer;
-    
+    // Wall Movement
     [Header("WallMovement")]
     public float wallSlideSpeed = 2;
     private bool isWallSliding;
-    // Wall Jumping
+        // Wall Jumping
     private bool isWallJumping;
     private float wallJumpDirection;
     private float wallJumpTime = 0.5f;
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Functions
         GroundCheck();
         ProcessGravity();
         ProcessWallSlide();
@@ -61,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(horizontalMovement * moveSpeed, rb.velocity.y);
             Flip();
         }
+        // Animation
+        animator.SetFloat("yVelocity", rb.velocity.y);
+        animator.SetFloat("magnitude", rb.velocity.magnitude);
+        animator.SetBool("isWallSliding", isWallSliding);
     }
     
     // Movement function
@@ -80,12 +87,16 @@ public class PlayerMovement : MonoBehaviour
                 // Hold down button to jump full height
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
                 jumpsRemaining--; // -1 jump
+                // Adds animation
+                animator.SetTrigger("jump");
             }
             else if (context.canceled)
             {
                 // tap button to jump half height/hop
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
                 jumpsRemaining--; // -1 jump
+                // Adds animation
+                animator.SetTrigger("jump");
             }
         }
         
@@ -95,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
             isWallJumping = true;
             rb.velocity = new Vector2(wallJumpDirection * wallJumpPower.x, wallJumpPower.y); // Jump away from the wall
             wallJumpTimer = 0;
+            // Adds animation
+            animator.SetTrigger("jump");
             
             // Force flip
             if (transform.localScale.x != wallJumpDirection)
