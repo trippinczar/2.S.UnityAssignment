@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -219,4 +220,5 @@ public class PlayerMovement : MonoBehaviour
         // Draw cube where wallcheck is
         Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
     }
+    
 }
